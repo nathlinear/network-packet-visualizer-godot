@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8hw27i2hhh1n"]
+
+[ext_resource type="Script" uid="uid://cd7byy03rc8d1" path="res://visual_path.gd" id="1_kt2yx"]
+
+[sub_resource type="Curve2D" id="Curve2D_glxpn"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1236, -115)
+}
+point_count = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_glxpn"]
+font_size = 28
+
+[node name="VisualPath" type="Path2D" groups=["link"]]
+top_level = true
+z_index = -1
+curve = SubResource("Curve2D_glxpn")
+script = ExtResource("1_kt2yx")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 329, 120)
+default_color = Color(0.5433802, 0.54338026, 0.54338026, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(497.84915, -46.320915)
+progress = 500.0
+rotates = false
+loop = false
+
+[node name="Label" type="Label" parent="PathFollow2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "hello"
+label_settings = SubResource("LabelSettings_glxpn")
+horizontal_alignment = 1
+vertical_alignment = 1

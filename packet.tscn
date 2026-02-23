@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://nw2v601fbik5"]
+
+[ext_resource type="Script" uid="uid://5ljtdbp5juru" path="res://packet.gd" id="1_an3gc"]
+
+[sub_resource type="Gradient" id="Gradient_07qeb"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.0029411765)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_an3gc"]
+gradient = SubResource("Gradient_07qeb")
+
+[sub_resource type="LabelSettings" id="LabelSettings_07qeb"]
+
+[node name="Packet" type="PathFollow2D" groups=["packet"]]
+z_index = 1
+rotates = false
+loop = false
+script = ExtResource("1_an3gc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.2901961, 0.5058824, 1, 1)
+texture = SubResource("GradientTexture2D_an3gc")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "From A
+Time:"
+label_settings = SubResource("LabelSettings_07qeb")
+horizontal_alignment = 1

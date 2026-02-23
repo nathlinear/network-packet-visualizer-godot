@@ -1,0 +1,128 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdfaic58wbrbg"]
+
+[ext_resource type="Script" uid="uid://clg3juuagg323" path="res://node_edit.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dl4rbq6eql8e7" path="res://network_node.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://v3xab7s6aha3" path="res://link.gd" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://dpj3b0ccc3j3k" path="res://ui_buttons.gd" id="3_h2yge"]
+
+[sub_resource type="Resource" id="Resource_lquwl"]
+script = ExtResource("2_1bvp3")
+node1 = NodePath("A")
+node2 = NodePath("B")
+cost = 2.0
+metadata/_custom_type_script = "uid://v3xab7s6aha3"
+
+[sub_resource type="Resource" id="Resource_7mycd"]
+script = ExtResource("2_1bvp3")
+node1 = NodePath("B")
+node2 = NodePath("C")
+cost = 1.0
+metadata/_custom_type_script = "uid://v3xab7s6aha3"
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_h2yge")
+links = Array[ExtResource("2_1bvp3")]([SubResource("Resource_lquwl"), SubResource("Resource_7mycd")])
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(690, 323)
+
+[node name="A" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(331, 311)
+router_name = "A"
+
+[node name="B" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(687, 314)
+router_name = "B"
+
+[node name="C" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(1009, 311)
+router_name = "C"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UIButtons" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 65.0
+offset_bottom = 43.0
+script = ExtResource("3_h2yge")
+
+[node name="CheckBox2" type="CheckBox" parent="CanvasLayer/UIButtons"]
+visible = false
+layout_mode = 2
+text = "Pause"
+
+[node name="CheckBox" type="CheckBox" parent="CanvasLayer/UIButtons"]
+layout_mode = 2
+text = "Auto"
+
+[node name="ForwardChanges" type="CheckBox" parent="CanvasLayer/UIButtons"]
+layout_mode = 2
+text = "Forward Changes"
+
+[node name="HScrollBar" type="HScrollBar" parent="CanvasLayer/UIButtons"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 20.0
+step = 0.5
+page = 1.0
+value = 5.0
+
+[node name="SpeedLabel" type="Label" parent="CanvasLayer/UIButtons"]
+layout_mode = 2
+
+[node name="VBoxAdd" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="HBoxNode" type="HBoxContainer" parent="CanvasLayer/VBoxAdd"]
+layout_mode = 2
+
+[node name="NodeName" type="TextEdit" parent="CanvasLayer/VBoxAdd/HBoxNode"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+placeholder_text = "label"
+
+[node name="NodeAdd" type="Button" parent="CanvasLayer/VBoxAdd/HBoxNode"]
+layout_mode = 2
+text = "Add node"
+
+[node name="HBoxLink" type="HBoxContainer" parent="CanvasLayer/VBoxAdd"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxAdd/HBoxLink"]
+layout_mode = 2
+text = "Link"
+
+[node name="LinkSource" type="TextEdit" parent="CanvasLayer/VBoxAdd/HBoxLink"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+placeholder_text = "node"
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxAdd/HBoxLink"]
+layout_mode = 2
+text = "to"
+
+[node name="LinkDest" type="TextEdit" parent="CanvasLayer/VBoxAdd/HBoxLink"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+placeholder_text = "node"
+
+[node name="Label3" type="Label" parent="CanvasLayer/VBoxAdd/HBoxLink"]
+layout_mode = 2
+text = "with dist"
+
+[node name="LinkDist" type="TextEdit" parent="CanvasLayer/VBoxAdd/HBoxLink"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+placeholder_text = "float"
+
+[node name="LinkAdd" type="Button" parent="CanvasLayer/VBoxAdd/HBoxLink"]
+layout_mode = 2
+text = "Add link"
+
+[node name="MouseLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
