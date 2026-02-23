@@ -65,7 +65,7 @@ func _delete_paths_near_mouse() -> void:
 			path.source.remove_neighbor(path.dest)
 	return
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
 		if event.key_label == KEY_SPACE:
 			is_paused = !is_paused
